@@ -1,0 +1,37 @@
+// @use "../util/" as em;
+$breakpoints-up: (
+    "small": em.em(375),
+    "medium": em.em(900),
+    "large": em.em(1440),
+);
+
+$breakpoints-down: (
+    "small": em.em(374.98),
+    "medium": em.em(899.98),
+    "large": em.em(1439.98),
+);
+
+@mixin breakpoint-up($size) {
+    @media (min-width: map-get($breakpoints-up,$size)) {
+        @content;
+    }
+}
+
+@mixin breadkpoint-down($size) {
+    @media (min-width: map-get($breakpoints-down,$size)) {
+        @content;
+    }
+}
+
+
+.hide-for-mobile {
+    @include breakpoint-up(medium) {
+        display:none;
+    }
+}
+
+.hide-for-desktop {
+    @include breadkpoint-down(medium) {
+        display: none;
+    }
+}
